@@ -5,17 +5,13 @@ module.config(function ($interpolateProvider) {
 module.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
-            when('/home', {
+            when('/route1', {
                 templateUrl: static_url + 'angular_code/html/test1.html',
                 controller: 'RouteController1'
             }).
-            when('/secret', {
+            when('/route2', {
                 templateUrl: static_url + 'angular_code/html/test2.html',
                 controller: 'RouteController2'
-            }).
-            when('/login', {
-                templateUrl: static_url + 'angular_code/html/test1.html',
-                controller: 'RouteController1'
             }).
             otherwise({
                 redirectTo: '/'
@@ -27,4 +23,4 @@ module.controller("RouteController1", function($scope) {
 });
 module.controller("RouteController2", function($scope) {
     $scope.test="This is working test2"
-})
+});
