@@ -17,8 +17,7 @@ def home(request):
     return render(request, 'main.html', {'STATIC_URL': settings.STATIC_URL})
 
 
-# It returns the image urls
-def fetch_images_bytag(request):
+def fetch_images_by_tag(request):
     tag_entered = request.GET['q']
     flickr_photos = utils.get_flickr_images(tag_entered)
     photos = json.dumps(flickr_photos)
