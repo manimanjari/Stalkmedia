@@ -5,12 +5,12 @@ module.config(function ($interpolateProvider) {
 module.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
-            when('/route1', {
-                templateUrl: static_url + 'angular_code/html/test1.html',
+            when('/flickr', {
+                templateUrl: static_url + 'angular_code/partial_views/flickr_view.html',
                 controller: 'RouteController1'
             }).
-            when('/route2', {
-                templateUrl: static_url + 'angular_code/html/test2.html',
+            when('/instagram', {
+                templateUrl: static_url + 'angular_code/partial_views/insta_view.html',
                 controller: 'RouteController2'
             }).
             otherwise({
@@ -19,8 +19,8 @@ module.config(['$routeProvider',
     }]);
 
 module.controller("RouteController1", function($scope) {
-    $scope.test="This is working test1"
+    $scope.test="flickr photos"
 });
 module.controller("RouteController2", function($scope) {
-    $scope.test="This is working test2"
+    $scope.test="insta photos"
 });

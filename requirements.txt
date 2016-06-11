@@ -1,0 +1,4 @@
+Django==1.9.7
+flickrapi==2.1.2
+gnureadline==6.3.3
+requests==2.10.0
