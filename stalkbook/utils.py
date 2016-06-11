@@ -7,8 +7,7 @@ from django.conf import settings
 def get_flickr_images(tag_entered):
     api_key = settings.API_KEY
     api_secret = settings.API_SECRET
-    photo_list = {}
-    photo_count = 0
+    photo_list = []
 
     flickr = flickrapi.FlickrAPI(api_key, api_secret, format='parsed-json')
     all_photos = flickr.photos.search(api_key=api_key, tags=tag_entered)
@@ -25,5 +24,5 @@ def get_flickr_images(tag_entered):
             '{individual_id}_{secret_id}.jpg'.format(
                 farm_id=farm_id, server_id=server_id,
                 individual_id=individual_id, secret_id=secret_id))
-        photo_list[title] = photo_url
+        photo_list.append({'title': title, 'url': photo_url})
     return photo_list
