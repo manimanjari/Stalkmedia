@@ -24,16 +24,20 @@ def flickr_extract(request):
     photo_list = []
     photo_json = {}
     flickr = flickrapi.FlickrAPI(api_key, api_secret, format='parsed-json')
-    all_photos = flickr.photos.search(api_key=api_key, tags="sunset")
+    all_photos = flickr.photos.search(api_key=api_key, tags="SUNSET")
 
     for i in range(50):
         photo_details = all_photos['photos']['photo'][i]
+        title = photo_details['title']
+        if not title:
+            title = "sunset"
         farm_id = str(photo_details['farm'])
         server_id = str(photo_details['server'])
         individual_id = str(photo_details['id'])
         secret_id = str(photo_details['secret'])
-        photo_url = 'http://farm' + farm_id + '.static.flickr.com/'
-        + server_id + '/' + individual_id + '_' + secret_id + '.jpg'
+        photo_url = 'http://farm' + farm_id + '.static.flickr.com/' +
+        server_id + '/' + individual_id + '_' + secret_id + '.jpg'
+        photo_json['title'] = title
         photo_json['link'] = photo_url
         photo_list.append(photo_json.copy())
     photo_lists = json.dumps(photo_list)
