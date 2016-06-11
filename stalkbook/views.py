@@ -1,8 +1,24 @@
-from django.shortcuts import render
-from django.conf import settings
-from django.contrib.auth.decorators import login_required
+import json
+import re
+import utils
 
-# Create your views here.
-#@login_required(login_url="login/")
+from django.shortcuts import render
+from django.http import HttpResponse
+from django.conf import settings
+
+
+import flickrapi
+
+from django.shortcuts import render
+from django.template import Context, loader
+
+
 def home(request):
     return render(request, 'main.html', {'STATIC_URL': settings.STATIC_URL})
+
+
+def fetch_images_by_tag(request):
+    tag_entered = request.GET['q']
+    flickr_photos = utils.get_flickr_images(tag_entered)
+    photos = json.dumps(flickr_photos)
+    return HttpResponse(photos)

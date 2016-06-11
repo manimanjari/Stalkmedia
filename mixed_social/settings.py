@@ -26,7 +26,7 @@ SECRET_KEY = 'g5)q(0n@#ur_ck$!ch&l$cyp2wv+p9v7wjq+f0+kh4tdsofpi='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'mixed_social.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR + 'loginapp.sqlite',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -121,3 +121,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+API_KEY = u'55f0cde720c94ed849661690881c01ea'
+API_SECRET = u'e7c9bdfaede2036b'
