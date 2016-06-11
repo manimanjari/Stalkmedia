@@ -1,4 +1,3 @@
-import flickrapi
 import json
 import re
 import utils
@@ -8,17 +7,19 @@ from django.http import HttpResponse
 from django.conf import settings
 
 
+import flickrapi
+
 from django.shortcuts import render
 from django.template import Context, loader
 
 
-def home(req):
-    return HttpResponse("Welcome to homepage")
-
-# It returns all the urls for photos with the given tag
+def home(request):
+    return render(request, 'main.html', {'STATIC_URL': settings.STATIC_URL})
 
 
-def images_extract(request):
-    flickr_photos = utils.get_flickr_images("sunset")
+# It returns the image urls
+def fetch_images_bytag(request):
+    tag_entered = request.GET['q']
+    flickr_photos = utils.get_flickr_images(tag_entered)
     photos = json.dumps(flickr_photos)
     return HttpResponse(photos)
