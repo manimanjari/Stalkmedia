@@ -20,4 +20,5 @@ def home(req):
 
 def images_extract(request):
     flickr_photos = utils.get_flickr_images("sunset")
-    return HttpResponse(flickr_photos)
+    photos = json.dumps(flickr_photos)
+    return HttpResponse(photos)

@@ -3,5 +3,5 @@ from . import views
 
 urlpatterns = [
     url(r'^home/$', views.home),
-    url(r'^flickr/$', views.images_extract),
+    url(r'^images/$', views.images_extract),
 ]
