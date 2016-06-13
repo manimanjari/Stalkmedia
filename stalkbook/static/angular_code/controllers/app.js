@@ -15,13 +15,25 @@ module.controller("TagController", function($scope, $http) {
 
     $scope.image = ""
     $scope.search = function(image) {
-        $scope.tag = '/images/?q=' + $scope.image
-        $http.get($scope.tag).success(function(data, status, headers, config){
-        $scope.tag_data = {}
-        for(i=0; i<data.length; i++){
-            $scope.tag_data[i] = data[i];
+        if ($scope.image != ""){
+           $scope.tag = '/images/?q=' + $scope.image
+           $http.get($scope.tag).success(function(data, status, headers, config){
+           $scope.tag_data = {}
+           if (data.length == 0){
+              $scope.measure = 0;
+              $scope.message = "Entered tag has no images associated with it";
+           }
+           else{
+             for(i = 0; i < data.length; i++){
+               $scope.measure = 1;
+               $scope.tag_data[i] = data[i];
+              }
+           }
+           })      
         }
-      }).error(function(data,status,headers,config){
-      })
+        else{
+          $scope.measure = 0;
+            $scope.message = "You entered an empty tag"
+        }
     }
-});
+ });

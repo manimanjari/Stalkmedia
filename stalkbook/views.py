@@ -19,6 +19,9 @@ def home(request):
 
 def fetch_images_by_tag(request):
     tag_entered = request.GET['q']
-    flickr_photos = utils.get_flickr_images(tag_entered)
-    photos = json.dumps(flickr_photos)
-    return HttpResponse(photos)
+    if request.GET.get('q'):
+        flickr_photos = utils.get_flickr_images(tag_entered)
+        photos = json.dumps(flickr_photos)
+        return HttpResponse(photos)
+    else:
+        return HttpResponse(status=400)
