@@ -12,11 +12,14 @@
 <div ng-controller="TagController">
   <form novalidate class="simple-form">
     Enter the tag to be searched: 
-    <input type="text" ng-model="image" /><br />
+    <input type="text" ng-model="image" />
     <input type="submit" ng-click="search(image)" value="Search" />
   </form>
-    <div ng-repeat="tag_image in tag_urls">
-       <img ng-src="[[tag_image]]">
+  <br>
+    <div ng-repeat="tag_data in tag_data">
+      <br>
+      [[tag_data.title]]<br/>
+       <img ng-src="[[tag_data.url]]">
     </div>
 </div>
 
