@@ -9,18 +9,21 @@
 </head>
 
 <body ng-app="stalkmediaApp">
-
+<p>
 <div ng-controller="TagController">
   <form novalidate class="simple-form">
     Enter the tag to be searched: 
-    <input type="text" ng-model="image" /><br />
+    <input type="text" ng-model="image" />
     <input type="submit" ng-click="search(image)" value="Search" />
   </form>
-  <pre>search : [[image]]</pre>
-</div>
-
-<a href="#/flickr">Flickr</a><br/>
-<a href="#/instagram">Instagram</a><br/>
+</p>
+    <div ng-repeat="tags in tag_data">
+      [[tags.title]]
+      <br>
+       <img ng-src="[[tags.url]]">
+    </div>
+    <p ng-if="measure == 0">[[message]]</p>
+</div> 
 
 
 <div ng-view></div>
